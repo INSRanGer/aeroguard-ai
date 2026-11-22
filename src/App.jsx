@@ -125,6 +125,18 @@ Generated with Gemini AI & Open-Meteo Air Telemetry.
 
   return (
     <div className={`min-h-screen text-slate-100 flex flex-col font-['Plus_Jakarta_Sans',sans-serif] relative transition-colors duration-1000 bg-gradient-to-b ${activeCategory.bgGradient}`}>
+      {/* Skip to Main Content Link for Keyboard & Screen Reader Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-emerald-600 focus:text-white focus:font-semibold focus:rounded-lg focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-emerald-300"
+      >
+        Skip to main content
+      </a>
+
+      {/* Screen Reader Live Region for Real-time Telemetry Updates */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {`Viewing air quality telemetry for ${selectedCity.name}. Current AQI is ${aqiData?.currentAqi || 'loading'}, categorized as ${activeCategory.label}.`}
+      </div>
       
       {/* Dynamic Atmospheric Ambient Background */}
       <AtmosphericBackground category={activeCategory} />
@@ -141,7 +153,7 @@ Generated with Gemini AI & Open-Meteo Air Telemetry.
       />
 
       {/* Main Container */}
-      <main className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 space-y-7 relative z-10">
+      <main id="main-content" tabIndex="-1" className="flex-1 max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 space-y-7 relative z-10 focus:outline-none">
         
         {/* Dynamic Mood Status Bar */}
         <div className="flex items-center justify-between text-xs text-slate-300 px-1 py-1">

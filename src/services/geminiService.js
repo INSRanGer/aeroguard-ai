@@ -32,7 +32,8 @@ export async function generateActionPlanWithGemini({
   cityName,
   apiKey = null
 }) {
-  const activeKey = apiKey || localStorage.getItem('gemini_api_key') || BUILTIN_GEMINI_KEY;
+  const storedKey = typeof localStorage !== 'undefined' ? localStorage.getItem('gemini_api_key') : null;
+  const activeKey = apiKey || storedKey || BUILTIN_GEMINI_KEY;
 
   if (activeKey) {
     try {
@@ -94,7 +95,8 @@ export async function askAirDoctor({
   conversationHistory = [],
   apiKey = null
 }) {
-  const activeKey = apiKey || localStorage.getItem('gemini_api_key') || BUILTIN_GEMINI_KEY;
+  const storedKey = typeof localStorage !== 'undefined' ? localStorage.getItem('gemini_api_key') : null;
+  const activeKey = apiKey || storedKey || BUILTIN_GEMINI_KEY;
 
   if (activeKey) {
     try {

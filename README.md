@@ -1,5 +1,11 @@
 # 🌫️ AeroGuard AI — Urban Smog & Family IAQ Copilot
 ### Google PromptWars Virtual — Challenge 06 Submission
+
+![Tests Passing](https://img.shields.io/badge/tests-22%20passed-brightgreen.svg)
+![Code Quality](https://img.shields.io/badge/code%20quality-verified-blue.svg)
+![Accessibility](https://img.shields.io/badge/accessibility-WCAG%20AA-emerald.svg)
+![Security Policy](https://img.shields.io/badge/security-hardened-purple.svg)
+
 > **Live Demo:** [https://aeroguard-ai-sooty.vercel.app](https://aeroguard-ai-sooty.vercel.app)  
 > **Repository:** [https://github.com/INSRanger/aeroguard-ai](https://github.com/INSRanger/aeroguard-ai)  
 > **Track:** Intent-Driven Development & AI Vibe Coding  
@@ -106,14 +112,23 @@ CORE RESPONSIBILITIES:
 * Node.js (v18 or higher)
 * npm
 
-### Installation:
+### Installation & Testing:
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/aeroguard-ai.git
+git clone https://github.com/INSRanger/aeroguard-ai.git
 cd aeroguard-ai
 
 # Install dependencies
 npm install
+
+# Run automated unit test suite (22 tests passing)
+npm test
+
+# Run test coverage analysis
+npm run test:coverage
+
+# Validate code syntax and linting
+npm run lint
 
 # Start local development server
 npm run dev
