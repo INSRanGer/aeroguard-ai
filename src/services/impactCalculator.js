@@ -1,6 +1,17 @@
 // Health Exposure and Environmental Impact Calculator
 // Based on Berkeley Earth PM2.5 cigarette equivalence and EPA urban emission factors
 
+/**
+ * Calculates quantified respiratory protection and environmental carbon/tailpipe emissions saved.
+ * Implements the Berkeley Earth PM2.5 cigarette equivalence formula:
+ * (Inhaling ~22 µg/m³ of PM2.5 over 24 hours approximates the lung toxicity of 1 cigarette).
+ * 
+ * @param {object} params
+ * @param {number} params.currentPm25 - Ambient PM2.5 level in µg/m³
+ * @param {string} [params.personaId='general'] - User vulnerability persona key
+ * @param {object} [params.actionsCompleted] - Toggled protection actions
+ * @returns {object} Calculated metrics including cigarettes spared, PM2.5 prevented, and CO2 avoided
+ */
 export function calculateImpactMetrics({
   currentPm25 = 85,
   personaId = 'general',

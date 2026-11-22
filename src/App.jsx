@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import AtmosphericBackground from './components/AtmosphericBackground';
 import AqiHeroCard from './components/AqiHeroCard';
@@ -8,8 +8,10 @@ import SafeWindowTimeline from './components/SafeWindowTimeline';
 import ImpactVisualizer from './components/ImpactVisualizer';
 import IndoorHacksGallery from './components/IndoorHacksGallery';
 import ChatCopilot from './components/ChatCopilot';
-import PromptInspectorModal from './components/PromptInspectorModal';
-import ApiKeyModal from './components/ApiKeyModal';
+
+// Code-split modals for optimal initial page-load performance
+const PromptInspectorModal = lazy(() => import('./components/PromptInspectorModal'));
+const ApiKeyModal = lazy(() => import('./components/ApiKeyModal'));
 
 import { PRESET_CITIES, fetchLiveAirQuality, getAqiCategory } from './services/airQualityService';
 import { PERSONAS } from './data/personas';
@@ -247,20 +249,26 @@ Generated with Gemini AI & Open-Meteo Air Telemetry.
         </div>
       </footer>
 
-      {/* Modals */}
-      <PromptInspectorModal
-        isOpen={isPromptInspectorOpen}
-        onClose={() => setIsPromptInspectorOpen(false)}
-        currentCity={selectedCity}
-        persona={selectedPersona}
-        aqiData={aqiData}
-      />
+      {/* Modals with Suspense for code-splitting efficiency */}
+      <Suspense fallback={null}>
+        {isPromptInspectorOpen && (
+          <PromptInspectorModal
+            isOpen={isPromptInspectorOpen}
+            onClose={() => setIsPromptInspectorOpen(false)}
+            currentCity={selectedCity}
+            persona={selectedPersona}
+            aqiData={aqiData}
+          />
+        )}
 
-      <ApiKeyModal
-        isOpen={isApiKeyModalOpen}
-        onClose={() => setIsApiKeyModalOpen(false)}
-        onKeySaved={(hasKey) => setHasCustomKey(hasKey)}
-      />
+        {isApiKeyModalOpen && (
+          <ApiKeyModal
+            isOpen={isApiKeyModalOpen}
+            onClose={() => setIsApiKeyModalOpen(false)}
+            onKeySaved={(hasKey) => setHasCustomKey(hasKey)}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }

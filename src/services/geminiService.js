@@ -17,6 +17,15 @@ CRITICAL RULES:
 3. Be conversational, empathetic, helpful, and concise. No robotic canned scripts.
 `;
 
+/**
+ * Generates structured, persona-specific daily action plans using Google Gemini models.
+ * @param {object} params
+ * @param {object} params.persona - User sensitive persona object
+ * @param {object} params.aqiData - Current telemetry data
+ * @param {string} params.cityName - Selected city name
+ * @param {string} [params.apiKey] - Optional custom user API key
+ * @returns {Promise<object>} Parsed structured action plan with commute, timing, and home shield guidance
+ */
 export async function generateActionPlanWithGemini({
   persona,
   aqiData,
@@ -66,6 +75,17 @@ Return only JSON.`;
   return generateLocalActionPlan(persona, aqiData, cityName);
 }
 
+/**
+ * Conversational Air Doctor Copilot using Google Gemini.
+ * @param {object} params
+ * @param {string} params.userMessage - User inquiry string
+ * @param {object} params.persona - Active persona object
+ * @param {object} params.aqiData - Current telemetry data
+ * @param {string} params.cityName - Current city name
+ * @param {Array} [params.conversationHistory] - Prior chat turns
+ * @param {string} [params.apiKey] - Optional custom key
+ * @returns {Promise<object>} Assistant answer text and model source attribution
+ */
 export async function askAirDoctor({
   userMessage,
   persona,

@@ -12,6 +12,12 @@ export const PRESET_CITIES = [
   { name: 'Zurich (Clean)', country: 'Switzerland', lat: 47.3769, lon: 8.5417 }
 ];
 
+/**
+ * Evaluates raw AQI value and returns standard CPCB/EPA category metadata,
+ * color palette, atmospheric theme tags, and health advisories.
+ * @param {number} aqiValue - The numeric Air Quality Index (0-500+)
+ * @returns {object} Category metadata object
+ */
 export function getAqiCategory(aqiValue) {
   const val = Math.round(aqiValue || 0);
 
@@ -213,6 +219,14 @@ export const REGIONAL_STATIONS = [
   { name: 'Zurich Zurichberg Alpine Station', cityName: 'Zurich', lat: 47.3769, lon: 8.5417, aqi: 28, pm25: 6, pm10: 11, no2: 12, o3: 48 }
 ];
 
+/**
+ * Generates combined regional and local monitoring stations for GIS mapping.
+ * @param {number} lat - Target center latitude
+ * @param {number} lon - Target center longitude
+ * @param {number} [baseAqi=182] - Baseline AQI for local station scaling
+ * @param {string} [cityName='City'] - Target city name label
+ * @returns {Array<object>} Unified array of monitoring stations with pollutant metrics
+ */
 export function getMonitoringStations(lat, lon, baseAqi = 182, cityName = 'City') {
   // 1. High-density local micro-neighborhood stations around the selected location
   const localOffsets = [
@@ -274,6 +288,11 @@ export function getMonitoringStations(lat, lon, baseAqi = 182, cityName = 'City'
   return combined;
 }
 
+/**
+ * Performs global geocoding lookup via Open-Meteo Geocoding API.
+ * @param {string} query - City or location search string
+ * @returns {Promise<Array<object>>} Formatted search result locations
+ */
 export async function searchCities(query) {
   if (!query || query.trim().length < 2) return [];
   try {
@@ -296,6 +315,12 @@ export async function searchCities(query) {
   }
 }
 
+/**
+ * Fetches real-time air quality pollutants and meteorological telemetry in parallel.
+ * @param {number} lat - Latitude coordinate
+ * @param {number} lon - Longitude coordinate
+ * @returns {Promise<object>} Unified atmospheric telemetry and 24-hour hourly forecast
+ */
 export async function fetchLiveAirQuality(lat, lon) {
   try {
     // Parallel fetch: Air Quality + Real Weather (Temp, Humidity, Wind speed)

@@ -72,6 +72,7 @@ export default function Header({
             <div className="flex md:hidden items-center gap-2">
               <button
                 onClick={onOpenApiKeyModal}
+                aria-label="Google AI Studio Key Configuration"
                 className={`p-2 rounded-lg border text-xs ${hasCustomKey ? 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10' : 'border-slate-700 text-slate-400 hover:text-white'}`}
                 title="Google AI Studio Key"
               >
@@ -79,6 +80,7 @@ export default function Header({
               </button>
               <button
                 onClick={onOpenPromptInspector}
+                aria-label="View GenAI Prompt Blueprint and System Instructions"
                 className="p-2 rounded-lg border border-slate-700 text-slate-400 hover:text-emerald-400 text-xs"
                 title="Prompt Inspector"
               >
@@ -96,11 +98,13 @@ export default function Header({
                 onChange={handleSearchChange}
                 onFocus={() => searchResults.length > 0 && setShowDropdown(true)}
                 placeholder={`Search city (e.g. Delhi, London, Beijing)...`}
+                aria-label="Search global cities for real-time air quality data"
                 className="w-full bg-slate-950/80 border border-slate-800 rounded-xl pl-9 pr-10 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all shadow-inner"
               />
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-slate-500" />
               <button
                 onClick={onDetectLocation}
+                aria-label="Auto-detect current GPS location"
                 className="absolute right-2 top-2 p-1 text-slate-400 hover:text-emerald-400 rounded-lg hover:bg-slate-800 transition-colors"
                 title="Detect My Location"
               >
