@@ -1,8 +1,10 @@
 # 🌫️ AeroGuard AI — Urban Smog & Family IAQ Copilot
 ### Google PromptWars Virtual — Challenge 06 Submission
+> **Live Demo:** [https://aeroguard-ai-sooty.vercel.app](https://aeroguard-ai-sooty.vercel.app)  
+> **Repository:** [https://github.com/INSRanger/aeroguard-ai](https://github.com/INSRanger/aeroguard-ai)  
 > **Track:** Intent-Driven Development & AI Vibe Coding  
 > **Challenge:** [Challenge 06] Urban Air Quality Assistant  
-> **Powered by:** Google Gemini 1.5 Flash • Open-Meteo Air API • React • Vite • Tailwind CSS
+> **Powered by:** Google Gemini • Open-Meteo Air API • React • Vite • Tailwind CSS
 
 ---
 
